@@ -1,0 +1,19 @@
+Basic input/ output
+
+Operator
+1.arithmetic Operator (+, - , * , / , % , ++ , --)
+2.Comparison Operator / Relational Operator ( > , < , >= , <= , == , !=)
+3.Assignment Operator (+=, -= , *= ,/= , %= , =)
+4.Logical Operator ( && , || , ! )
+5.BitWise Operator ( & , ! , | , >> , <<)
+6.Special Operator (is , is not)
+
+Naming Convention
+
+1.meaningful.
+2.fullSentence (camelCase, use underscore)
+3.
+
+datatype conversion
+1.implict type (system default)
+2.explict type (exact variable)
