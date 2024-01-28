@@ -1,0 +1,68 @@
+1. Write a Python program to convert temperatures to and from Celsius and Fahrenheit.
+[ Formula : c/5 = f-32/9 [ where c = temperature in celsius and f = temperature in fahrenheit ]
+Expected Output :
+60°C is 140 in Fahrenheit
+45°F is 7 in Celsius
+
+2. Write a Python program to construct the following pattern, using a nested for loop.
+
+* 
+* * 
+* * * 
+* * * * 
+* * * * * 
+* * * * 
+* * * 
+* * 
+*
+
+3. Write a Python program that accepts a word from the user and reverses it.
+
+4. Write a Python program to count the number of even and odd numbers in a series of numbers
+Sample numbers : numbers = (1, 2, 3, 4, 5, 6, 7, 8, 9) 
+Expected Output :
+Number of even numbers : 5
+Number of odd numbers : 4
+
+5. Write a Python program to check the validity of passwords input by users.
+Validation :
+At least 1 letter between [a-z] and 1 letter between [A-Z].
+At least 1 number between [0-9].
+At least 1 character from [$#@].
+Minimum length 6 characters.
+Maximum length 16 characters.
+
+6. Write a Python program to print the alphabet pattern 'A'.
+Expected Output:
+
+  ***                                                                   
+ *   *                                                                  
+ *   *                                                                  
+ *****                                                                  
+ *   *                                                                  
+ *   *                                                                  
+ *   *
+
+7. Write a Python program to print the alphabet pattern 'E'.
+Expected Output:
+
+ *****                                                                  
+ *                                                                      
+ *                                                                      
+ ****                                                                   
+ *                                                                      
+ *                                                                      
+ *****
+
+8. 44. Write a Python program to construct the following pattern, using a nested loop number.
+Expected Output:
+
+1
+22
+333
+4444
+55555
+666666
+7777777
+88888888
+999999999
