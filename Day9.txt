@@ -1,0 +1,11 @@
+restruant function (item, price)
+menu_list = [4,4]
+extra_list = ['rice','egg']
+
+return စားစရာ+extra_list, ပြန်အမ်းငွေ
+
+ပြန်အမ်းငွေကို tip ပေးမပေး
+return ပြန်အမ်းငွေ OR
+return 'Thanks Sir'
+
+restruant ('Fried Rice egg', 300)
