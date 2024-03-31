@@ -1,0 +1,6 @@
+(num,pow)
+
+1. num=2,pow= 0 (return 1)
+2. num= 0 (return 0)
+3. num = 2, pow =1 (return num) 
+else:?
