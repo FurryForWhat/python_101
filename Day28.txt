@@ -1,0 +1,6 @@
+Object = instance of a class
+Object has attributes and method
+#OOP paradigm 
+#Abstraction
+#Encapsulation
+#Inheritance
