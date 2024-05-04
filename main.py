@@ -1,9 +1,9 @@
-greetOne= 3.23
-greetTwo= 5
-greetThree = 7.1
-greetFour = 10
+import login
 
-result= greetOne+greetTwo+ greetThree+greetFour
-
-print(result)
-print(type(result))
+if __name__ == '__main__':
+    print('*'*100)
+    print('Welcome From Inventory Management System')
+    print("Please Sign In✌️")
+    login.login()
+    
+#id_generator()
