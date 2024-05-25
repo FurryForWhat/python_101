@@ -20,7 +20,7 @@ def display_customer():
         case 4:
             update_customer()
         case 5:
-            pass
+            return
         case default:
             print("Wrong Options")
             display_customer()
@@ -71,7 +71,7 @@ def delete_customer():
     flag = True
     with open('D://VS Coding//Python/Day29//customer.csv','r') as readFile:
         with open('D://VS Coding//Python/Day29//temp.csv','w+',newline='') as tempFile:
-            read_csv = csv.DictReader(readFile);
+            read_csv = csv.DictReader(readFile)
             columns = ['id','name','DOB','city','phone_number']
             write_csv = csv.DictWriter(tempFile,fieldnames=columns)
             write_csv.writeheader()
@@ -110,6 +110,7 @@ def update_customer():
             for user in read_csv:
                 if user_name == user['name']:
                     flag = False
+                    rand_otp = tools.OTP()
                     print(f'user :{user['name']} found🔔')
                     print('What u want to update?')
                     print('Press 1 to update name💩')
@@ -119,16 +120,28 @@ def update_customer():
                     u_input = int(input('➡️  '))
                     if u_input == 1:
                         new_name = input('new name: ')
-                        user['name'] = new_name
+                        print(rand_otp)
+                        otp = input('Enter OTP: ')
+                        if otp == rand_otp:
+                            user['name'] = new_name
                     elif u_input == 2:
                         new_name = input('new birthday: ')
-                        user['DOB'] = new_name
+                        print(rand_otp)
+                        otp = input('Enter OTP: ')
+                        if otp == rand_otp:
+                            user['DOB'] = new_name
                     elif u_input == 3:
                         new_name = input('new city: ')
-                        user['city'] = new_name
+                        print(rand_otp)
+                        otp = input('Enter OTP: ')
+                        if otp == rand_otp:
+                            user['city'] = new_name
                     elif u_input == 4:
                         new_name = input('new phone number: ')
-                        user['phone_number'] = new_name
+                        print(rand_otp)
+                        otp = input('Enter OTP: ')
+                        if otp == rand_otp:
+                            user['phone_number'] = new_name
                     else:
                         print('Invalid Input , Try again❌')
                         update_customer()
@@ -140,6 +153,4 @@ def update_customer():
         os.rename('D://VS Coding//Python/Day29//temp.csv','D://VS Coding//Python/Day29//customer.csv')
         print('User data updated successfully✅✅✅')
         display_customer()        
-            
-
-display_customer()
+        
