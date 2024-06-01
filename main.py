@@ -1,9 +1,8 @@
 import login
+import tools
 
 if __name__ == '__main__':
-    print('*'*100)
-    print('Welcome From Inventory Management System')
-    print("Please Sign In✌️")
+    tools.print_in_middle('Welcome From Inventory Management System')
+    tools.print_in_middle("Please Sign In✌️")
     login.login()
     
-#id_generator()

@@ -3,13 +3,17 @@ import tools
 import os
 
 def display_customer():
-    print('     Customer Section')
-    print("➕Press 1 to add customer")
-    print("➕Press 2 to search customer")
-    print("➕Press 3 to delete customer")
-    print("➕Press 4 to update customer")
-    print("➕Press 5 to exit")
-    user_choice = int(input("➡️  "))
+    tools.print_in_middle('Customer Section')
+    tools.print_with_borders("➕Press 1 to add customer")
+    tools.print_with_borders("➕Press 2 to search customer")
+    tools.print_with_borders("➕Press 3 to delete customer")
+    tools.print_with_borders("➕Press 4 to update customer")
+    tools.print_with_borders("➕Press 5 to exit")
+    try:
+        user_choice = int(input("➡️  "))
+    except ValueError as e:
+        print('Invalid Input , Use only number.')
+        display_customer()
     match user_choice:
         case 1:
             add_customer()
@@ -30,27 +34,33 @@ def add_customer():
         
         csv_reader = csv.DictReader(readFile)
         cu_name = input('Enter customer name->')
-        cu_dob = input('Enter customer Date of Birth->')
-        cu_city= input('Enter City->')
         
-        flag = False
-        
-        while flag == False:
-            cu_ph = input('Enter Phone number->')
-            flag = tools.ph_valid(cu_ph)
-            if flag:
-                for i in csv_reader:
-                    if cu_name == i['name'] and cu_dob == i['DOB']:
-                        print('❌User already exists')
-                        display_customer()
+        dob_flag = False
+        while dob_flag == False:
+            cu_dob = input('Enter customer Date of Birth (eg. \"12-Feb-1988\")->')
+            dob_flag = tools.dob_valid(cu_dob)
+            if dob_flag:
+                cu_city= input('Enter City->')
+                phone_flag = False
+                
+                while phone_flag == False:
+                    cu_ph = input('Enter Phone number->')
+                    phone_flag = tools.ph_valid(cu_ph)
+                    if phone_flag:
+                        for i in csv_reader:
+                            if cu_name == i['name'] and cu_dob == i['DOB']:
+                                print('❌User already exists')
+                                display_customer()
 
-                with open('D://VS Coding//Python/Day29//customer.csv','a',newline='') as writeFile:  
-                            columns = ['id','name','DOB','city','phone_number']
-                            csv_writer = csv.DictWriter(writeFile,fieldnames=columns)
-                            cu_id = tools.id_generator()
-                            csv_writer.writerow({'id':cu_id,'name':cu_name,'DOB':cu_dob,'city':cu_city,'phone_number':cu_ph})
-                            print('Customer added successfully!!!')       
-                display_customer()
+                        with open('D://VS Coding//Python/Day29//customer.csv','a',newline='') as writeFile:  
+                                    columns = ['id','name','DOB','city','phone_number']
+                                    csv_writer = csv.DictWriter(writeFile,fieldnames=columns)
+                                    cu_id = tools.id_generator()
+                                    csv_writer.writerow({'id':cu_id,'name':cu_name,'DOB':cu_dob,'city':cu_city,'phone_number':cu_ph})
+                                    print('Customer added successfully!!!')       
+                        display_customer()
+            else:
+                print('Invalid format , try again!!!!')
 
 def search_customer():
     user_name = input("Enter username to search->")
@@ -60,15 +70,17 @@ def search_customer():
         for i in csv_reader:
             if i['name'] == user_name:
                 flag = False
+                print('User found📛')
                 print('➡️',i)
                 display_customer()
         if flag == True:
             print('❌ User not found!!!')
-            display_customer()
+            search_customer()
 
 def delete_customer():
     user_name = input("Enter username to search->")
     flag = True
+    user_change = True
     with open('D://VS Coding//Python/Day29//customer.csv','r') as readFile:
         with open('D://VS Coding//Python/Day29//temp.csv','w+',newline='') as tempFile:
             read_csv = csv.DictReader(readFile)
@@ -80,17 +92,26 @@ def delete_customer():
 
                     print('User name',i['name'],'found!!!!')
                     print('Are you sure to delete user:',i['name'],'?')
-                    user_deleter = input('Y/N➡️  ')
-                    if user_deleter == 'Y':
+                    user_deleter = str(input('Y/N➡️  '))
+                    v_2 = user_deleter.lower()
+                    
+                    if v_2 == 'y' or v_2 == 'yes':
                         flag = False
                         print('User deleted successfully')
-                    elif user_deleter == 'N':
+                    elif v_2 == 'n' or v_2 == 'no':
                         write_csv.writerow(i) 
+                        user_change = False
+                        
                 else:
                     write_csv.writerow(i)
 
-    if flag == True:
+    if flag == True and user_change == True:
         print('❌ User not found!!!')
+        display_customer()
+    elif flag == True and user_change == False:
+        print('No data was changed')
+        os.remove('D://VS Coding//Python/Day29//customer.csv')
+        os.rename('D://VS Coding//Python/Day29//temp.csv','D://VS Coding//Python/Day29//customer.csv')
         display_customer()
     else:
         os.remove('D://VS Coding//Python/Day29//customer.csv')
@@ -114,7 +135,7 @@ def update_customer():
                     print(f'user :{user['name']} found🔔')
                     print('What u want to update?')
                     print('Press 1 to update name💩')
-                    print('Press 2 to update birthday🎂')
+                    print('Press 2 to update birthday🎂(eg. \"12-Feb-1988\")')
                     print('Press 3 to update city🏙️')
                     print('Press 4 to update phone🤙🏻')
                     u_input = int(input('➡️  '))
@@ -141,6 +162,7 @@ def update_customer():
                         print(rand_otp)
                         otp = input('Enter OTP: ')
                         if otp == rand_otp:
+                            tools.ph_valid(new_name)
                             user['phone_number'] = new_name
                     else:
                         print('Invalid Input , Try again❌')
@@ -152,5 +174,7 @@ def update_customer():
         os.remove('D://VS Coding//Python/Day29//customer.csv')
         os.rename('D://VS Coding//Python/Day29//temp.csv','D://VS Coding//Python/Day29//customer.csv')
         print('User data updated successfully✅✅✅')
-        display_customer()        
-        
+        display_customer()
+
+    
+display_customer()
